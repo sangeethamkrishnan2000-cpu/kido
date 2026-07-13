@@ -19,7 +19,7 @@ pipeline{
     stage ('Prepare Environment') {
         steps{
             sh 'cp .env.testing .env'
-            sh 'php artisan key:genarate'
+            sh 'php artisan key:generate'
         }
     } 
     stage('Run Tests') {
