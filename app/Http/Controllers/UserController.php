@@ -34,5 +34,19 @@ public function createUser(){
         'message' => 'User deleted successfully'
     ], 200);
 }
+public function update(Request $request, User $user)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+    ]);
+
+    $user->update($validated);
+
+    return response()->json([
+        'message' => 'User updated successfully',
+        'data' => $user,
+    ], 200);
+}
 
 }

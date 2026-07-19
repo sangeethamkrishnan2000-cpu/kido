@@ -31,7 +31,7 @@ class UserApiTest extends TestCase
 
         $response->assertJsonCount(3);
     }
-    public function it_can_delete_a_user()
+    public function test_it_can_delete_a_user()
     {
         // Arrange
         $user = User::factory()->create();
@@ -47,6 +47,34 @@ class UserApiTest extends TestCase
 
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
+        ]);
+    }
+     public function test_it_can_update_a_user()
+    {
+        // Arrange
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+        ]);
+
+        $updatedData = [
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+        ];
+
+        // Act
+        $response = $this->putJson("/api/users/{$user->id}", $updatedData);
+
+        // Assert
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'message' => 'User updated successfully',
+                 ]);
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
         ]);
     }
 }
