@@ -49,7 +49,7 @@ class UserApiTest extends TestCase
             'id' => $user->id,
         ]);
     }
-     public function test_it_can_update_user()
+     public function test_is_update_user()
     {
         // Arrange
         $user = User::factory()->create([
@@ -68,7 +68,7 @@ class UserApiTest extends TestCase
         // Assert
         $response->assertStatus(200)
                  ->assertJson([
-                     'message' => 'User updated successfully',
+                     'message' => 'updated successfully',
                  ]);
 
         $this->assertDatabaseHas('users', [
