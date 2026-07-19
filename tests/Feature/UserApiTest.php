@@ -49,7 +49,7 @@ class UserApiTest extends TestCase
             'id' => $user->id,
         ]);
     }
-     public function test_it_can_update_a_user()
+     public function test_it_can_update_user()
     {
         // Arrange
         $user = User::factory()->create([
