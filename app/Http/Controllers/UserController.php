@@ -26,5 +26,13 @@ public function createUser(){
             User::all()
         );
     }
+    public function destroy(User $user)
+   {
+    $user->delete();
+
+    return response()->json([
+        'message' => 'User deleted successfully'
+    ], 200);
+}
 
 }
