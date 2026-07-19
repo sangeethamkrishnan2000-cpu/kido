@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 ///te::post('user/create', [User::controller, 'createUser']);
 Route::get('/users', [UserController::class, 'index']);
+Route::delete('/users/{user}', [UserController::class, 'destroy']);
